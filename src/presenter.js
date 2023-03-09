@@ -1,15 +1,17 @@
-import sumar from "./sumador";
+import Nota from "./Nota.js";
+import ListaNotas from "./ListaNotas.js";
 
-const first = document.querySelector("#primer-numero");
-const second = document.querySelector("#segundo-numero");
-const form = document.querySelector("#sumar-form");
-const div = document.querySelector("#resultado-div");
+const formularioNota = document.querySelector("#formularioNota");
+const tituloNota = document.querySelector("#tituloNota");
+const descripcionNota = document.querySelector("#descripcionNota");
+const listaNotasHTML = document.querySelector("#listaNotasHTML");
 
-form.addEventListener("submit", (event) => {
+let listaNotasNueva = new ListaNotas();
+
+formularioNota.addEventListener("submit", (event) => {
   event.preventDefault();
-
-  const firstNumber = Number.parseInt(first.value);
-  const secondNumber = Number.parseInt(second.value);
-
-  div.innerHTML = "<p>" + sumar(firstNumber, secondNumber) + "</p>";
+  let notaNueva = new Nota(tituloNota.value, descripcionNota.value);
+  listaNotasNueva.AgregarNota(notaNueva);
+  listaNotasHTML.innerHTML = "";
+  listaNotasNueva.MostrarLista();
 });
